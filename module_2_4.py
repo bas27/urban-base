@@ -16,3 +16,14 @@ for i in numbers:
         primes.append(i)
 print(primes)
 print(not_primes)
+
+#Время выполнения кода можно отслеживать так:
+
+# import time
+#
+# start_time = time.time()
+# # Ваш код здесь
+# end_time = time.time()
+#
+# execution_time = end_time - start_time
+# print(f"Время выполнения: {execution_time} секунд")
