@@ -16,7 +16,7 @@ def oldQues(n):
     if my_list:
         for i in my_list:
             str_devider += unicNumber(i)
-    return  str_devider + unicNumber(n)
+    return str_devider + unicNumber(n)
 
 
 print(oldQues(4))
