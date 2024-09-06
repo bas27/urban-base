@@ -60,13 +60,21 @@ class House:
             self.number_of_floors += other
             return self
     def __iadd__(self, other):
-        self.number_of_floors += other
-        return self
+        if isinstance(other, int):
+            self.number_of_floors += other
+            return self
+        elif isinstance(other, House):
+            self.number_of_floors += other.number_of_floors
+            return self
+
 
     def __radd__(self, other):
-        self.number_of_floors += other
-        return self
-
+        if isinstance(other, int):
+            self.number_of_floors += other
+            return self
+        elif isinstance(other, House):
+            self.number_of_floors += other.number_of_floors
+            return self
 
 # h1 = House('ЖК Горский', 18)
 # h2 = House('Домик в деревне', 2)
