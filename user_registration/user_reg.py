@@ -1,3 +1,5 @@
+import re
+
 class User:
 
     """
@@ -19,5 +21,12 @@ class Database:
 
 if __name__ == '__main__':
     database = Database()
-    user = User(input('username: '), input('password: '), input('password_confirm: '))
-    database.add_user(user.username, user.password)
+    while True:
+        choice = input("Приветствую! Выберите действие: \n1 - Вход\n2 - Регистрация")
+        user = User(input('username: '), password := input('password: '), password2 := input('password_confirm: '))
+        if password != password2:
+            exit()
+        tpl_pass = re.match()
+        if password
+        database.add_user(user.username, user.password)
+        print(database.data)
