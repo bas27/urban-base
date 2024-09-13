@@ -15,8 +15,8 @@ class Database:
     def __init__(self):
         self.data = {}
 
-    def add_user(self, username, password):
-        self.data[username] = password
+    def add_user(self, username, data):
+        self.data[username] = data
 
 
 if __name__ == '__main__':
@@ -26,7 +26,8 @@ if __name__ == '__main__':
         user = User(input('username: '), password := input('password: '), password2 := input('password_confirm: '))
         if password != password2:
             exit()
-        tpl_pass = re.match()
-        if password
-        database.add_user(user.username, user.password)
-        print(database.data)
+        if re.match(r'^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$', password):
+            database.add_user(user.username, user.password)
+            print(database.data)
+        else:
+            print('Ваш пароль не соответствует требованиям безопасности')
