@@ -2,7 +2,7 @@ import os
 import time
 from os.path import join, getsize, getmtime, dirname
 
-for root, dirs, files in os.walk('./module_6'):
+for root, dirs, files in os.walk('../module_6'):
     for file in files:
         filepath = join(root, file)
         filetime = getmtime(filepath)
