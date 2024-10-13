@@ -4,11 +4,15 @@ def is_prime(func):
         if value == 1:
             print('Составное')
         else:
+            prime_flag = False
             for i in range(2, int(value**0.5) + 1):
                 if value % i == 0:
-                    print('Составное')
-                else:
-                    print('Простое')
+                    prime_flag = True
+                    break
+            if prime_flag:
+                print('Составное')
+            else:
+                print('Простое')
         return value
     return wrapper
 
@@ -19,5 +23,5 @@ def sum_three(a, b, c):
     return a + b + c
 
 
-result = sum_three(0, 0, 1)
+result = sum_three(11, 0, 0)
 print(result)
