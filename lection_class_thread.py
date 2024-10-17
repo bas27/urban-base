@@ -3,7 +3,6 @@ import requests
 
 
 class Getter(Thread):
-
     res = []
 
     def __init__(self, url):
@@ -14,6 +13,7 @@ class Getter(Thread):
         response = requests.get(self.url)
         Getter.res.append(response.json())
 
+
 threads = []
 num_genres = 5
 
@@ -21,7 +21,6 @@ for i in range(num_genres):
     thread = Getter('https://binaryjazz.us/wp-json/genrenator/v1/genre/')
     thread.start()
     threads.append(thread)
-
 
 for t in threads:
     t.join()

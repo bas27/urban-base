@@ -4,11 +4,11 @@ from time import sleep
 
 class Knight(Thread):
     enemy = 100
+
     def __init__(self, name: str, power: int):
         super().__init__()
         self.name = name
         self.power = power
-
 
     def run(self):
         print(f"{self.name}, на нас напали!")
