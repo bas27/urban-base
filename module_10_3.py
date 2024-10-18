@@ -31,14 +31,15 @@ class Bank:
                 self.lock.acquire()
 
 
-bk = Bank()
-th1 = Thread(target=Bank.deposit, args=(bk,))
-th2 = Thread(target=Bank.take, args=(bk,))
+if __name__ == '__main__':
+    bk = Bank()
+    th1 = Thread(target=Bank.deposit, args=(bk,))
+    th2 = Thread(target=Bank.take, args=(bk,))
 
-th1.start()
-th2.start()
+    th1.start()
+    th2.start()
 
-th1.join()
-th2.join()
+    th1.join()
+    th2.join()
 
-print(f'Итоговый баланс: {bk.balance}')
+    print(f'Итоговый баланс: {bk.balance}')
