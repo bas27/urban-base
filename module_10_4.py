@@ -22,36 +22,33 @@ class Guest(Thread):
 class Cafe:
     def __init__(self, *tables):
         self.queue = queue.Queue()
-        self.tables = tables
+        self.tables = list(tables)
 
     def guest_arrival(self, *guests):  # (прибытие гостей)
         for guest in guests:
-            if guest not in [table.guest for table in self.tables]:
-                for table in self.tables:
-                    if table.guest is None:
-                        table.guest = guest
-                        guest.start()
-                        print(f"{guest.name} сел(-а) за стол номер {table.number}")
-                    else:
-                        self.queue.put(guest)
-                        print(f"{guest.name} в очереди")
+            # if guest not in [table.guest for table in self.tables]:
+            for table in self.tables:
+                if table.guest is None:
+                    table.guest = guest
+                    guest.start()
+                    print(f"{guest.name} сел(-а) за стол номер {table.number}")
+                    break
+            else:
+                self.queue.put(guest)
+                print(f"{guest.name} в очереди")
 
     def discuss_guests(self):
-        while self.queue.empty() is False or [table.guest for table in self.tables] != [None]:
+        while not self.queue.empty() or any(table.guest for table in self.tables if table.guest is not None):
             for table in self.tables:
-                if table.guest and table.guest.is_alive():
-                    print(f"{table.guest.name} покушал(-а) и ушёл(ушла)")
-                    print(f"Стол номер {table.number} свободен")
+                if table.guest and not table.guest.is_alive():
+                    print(f'{table.guest.name} покушал(-а) и ушёл(ушла)')
+                    print(f'Стол номер {table.number} свободен')
                     table.guest = None
-                else:
                     if not self.queue.empty():
-                        guest = self.queue.get()
-                        for table in self.tables:
-                            if table.guest is None:
-                                table.guest = guest
-                                guest.start()
-                                print(f"{guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}")
-                                break
+                        new_guest = self.queue.get()
+                        print(f'{new_guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
+                        table.guest = new_guest
+                        new_guest.start()
 
 
 if __name__ == "__main__":
