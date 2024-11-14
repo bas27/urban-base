@@ -25,7 +25,7 @@ class RunnerTest(unittest.TestCase):
 
     def test_challenge(self):
         r1 = runner.Runner('Alex')
-        r2= runner.Runner('Den')
+        r2 = runner.Runner('Den')
         for _ in range(10):
             r1.walk()
             r2.run()
