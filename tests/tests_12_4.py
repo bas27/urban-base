@@ -12,7 +12,7 @@ class RunnerTest(unittest.TestCase):
         Test walk method
         """
         try:
-            r1 = rt.Runner('Alex', speed=5)
+            r1 = rt.Runner('Alex', speed=-5)
             for _ in range(10):
                 r1.walk()
             self.assertEqual(r1.distance, 50)
