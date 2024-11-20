@@ -1,14 +1,12 @@
 import unittest
-import runner
-
-
+import runner_
 class RunnerTest(unittest.TestCase):
 
     def test_walk(self):
         """
         Test walk method
         """
-        r1 = runner.Runner('Alex')
+        r1 = runner_.Runner('Alex')
         for _ in range(10):
             r1.walk()
         self.assertEqual(r1.distance, 50)
@@ -18,14 +16,14 @@ class RunnerTest(unittest.TestCase):
         Test run method
         """
 
-        r1 = runner.Runner('Alex')
+        r1 = runner_.Runner('Alex')
         for _ in range(10):
             r1.run()
         self.assertEqual(r1.distance, 100)
 
     def test_challenge(self):
-        r1 = runner.Runner('Alex')
-        r2 = runner.Runner('Den')
+        r1 = runner_.Runner('Alex')
+        r2 = runner_.Runner('Den')
         for _ in range(10):
             r1.walk()
             r2.run()
