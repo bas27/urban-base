@@ -1,5 +1,5 @@
 import unittest
-import rt_with_exceptions as rt
+from module_12 import rt_with_exceptions as rt
 import logging
 
 logging.basicConfig(level=logging.INFO, filemode="w", encoding="utf-8", filename="runner_tests.log",
