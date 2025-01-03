@@ -85,3 +85,4 @@
     - Основы Fast Api и маршрутизация
     - Валидация данных
     - CRUD Запросы: Get, Post, Put Delete.
+    - Модели данных Pydantic
