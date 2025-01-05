@@ -86,3 +86,4 @@
     - Валидация данных
     - CRUD Запросы: Get, Post, Put Delete.
     - Модели данных Pydantic
+    - Шаблонизатор Jinja 2.
