@@ -1,9 +1,10 @@
 from typing import List, Annotated
 
-from fastapi import FastAPI, HTTPException, Path, Request
+from fastapi import FastAPI, HTTPException, Path, Request, Form, status
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
+
 
 app = FastAPI(swagger_ui_parameters={"tryItOutEnabled": True}, debug=True)
 templates = Jinja2Templates(directory="templates")
@@ -38,16 +39,17 @@ async def get_user(request: Request, user_id: int) -> HTMLResponse:
     raise HTTPException(status_code=404, detail=f"User was not found")
 
 
-@app.post('/user/{username}/{age}', response_model=User)
+@app.post('/', status_code=status.HTTP_201_CREATED)
 async def create_user(
-        username: Annotated[str, Path(min_length=5, max_length=20, title='Enter username', example='Username')],
-        age: Annotated[int, Path(ge=18, le=100, title='Enter age', example='24')]
-):
+        request: Request,
+        username: str = Form(min_length=5, max_length=20, title='Enter username', example='Username'),
+        age: int = Form(ge=18, le=100, title='Enter age', example='24')
+) -> HTMLResponse:
     if validate_user(username):
         new_id = max((u.id for u in users), default=0) + 1
         new_user = User(id=new_id, username=username, age=age)
         users.append(new_user)
-        return new_user
+        return templates.TemplateResponse("users.html", {"request": request, "users": users})
 
 
 @app.put('/user/{user_id}/{username}/{age}', response_model=User)

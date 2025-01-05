@@ -1,5 +1,16 @@
 {% extends 'main.html'%}
 {% block crud_container %}
+<section class="container-fluid">
+    <form method="post" action="/">
+        <div class="col-auto">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="username" placeholder="Введите имя"/>
+                <input type="text" class="form-control" name="age" placeholder="Введите возраст"/>
+                <button type="submit" value="Добавить" class="btn btn-primary">Добавить</button>
+            </div>
+        </div>
+    </form>
+</section>
     {% if user %}
         <article class="card container fluid"></article>
         <br>
